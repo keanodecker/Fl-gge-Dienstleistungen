@@ -2,26 +2,26 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import { FaTiktok, FaInstagram } from 'react-icons/fa';
 
 const navItems = [
-  { label: 'Unsere Dienstleistungen', href: '#services' },
-  { label: 'Über uns', href: '#about' },
-  { label: 'Preise', href: '#pricing' },
-  { label: 'Kontakt aufnehmen', href: '#appointment' },
+  { label: 'Unsere Dienstleistungen', href: '#services', scroll: true },
+  { label: 'Über uns', href: '#about', scroll: true },
+  { label: 'Preise', href: '#pricing', scroll: true },
+  { label: 'Kontakt aufnehmen', href: '/kontakt', scroll: false },
 ];
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const handleNavClick = (href) => {
+  const handleScrollClick = (e, href) => {
+    e.preventDefault();
     setMobileMenuOpen(false);
-    if (href.startsWith('#')) {
-      const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -30,37 +30,39 @@ export default function Header() {
       <div className="container-custom">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a
-            href="#hero"
-            className="flex items-center gap-3"
-            onClick={(e) => { e.preventDefault(); handleNavClick('#hero'); }}
-          >
-            <Image
-              src="/logo.png"
-              alt="Flügge Bodenbeläge"
-              width={56}
-              height={56}
-              className="rounded-full"
-            />
-          </a>
+          <Link href="/" className="flex items-center">
+            <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-primary/20 shadow-md bg-white">
+              <Image
+                src="/logo.png"
+                alt="Flügge Bodenbeläge"
+                fill
+                className="object-contain p-1"
+              />
+            </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
-            {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                onClick={(e) => {
-                  if (item.href.startsWith('#')) {
-                    e.preventDefault();
-                    handleNavClick(item.href);
-                  }
-                }}
-                className="text-foreground hover:text-primary transition-colors duration-200 font-medium"
-              >
-                {item.label}
-              </a>
-            ))}
+            {navItems.map((item) =>
+              item.scroll ? (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={(e) => handleScrollClick(e, item.href)}
+                  className="text-foreground hover:text-primary transition-colors duration-200 font-medium"
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className="text-foreground hover:text-primary transition-colors duration-200 font-medium"
+                >
+                  {item.label}
+                </Link>
+              )
+            )}
           </nav>
 
           {/* Social Icons - Desktop */}
@@ -99,23 +101,27 @@ export default function Header() {
         {mobileMenuOpen && (
           <div className="lg:hidden py-6 border-t border-border">
             <nav className="flex flex-col gap-4">
-              {navItems.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  onClick={(e) => {
-                    if (item.href.startsWith('#')) {
-                      e.preventDefault();
-                      handleNavClick(item.href);
-                    } else {
-                      setMobileMenuOpen(false);
-                    }
-                  }}
-                  className="text-foreground hover:text-primary transition-colors duration-200 font-medium py-2"
-                >
-                  {item.label}
-                </a>
-              ))}
+              {navItems.map((item) =>
+                item.scroll ? (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    onClick={(e) => handleScrollClick(e, item.href)}
+                    className="text-foreground hover:text-primary transition-colors duration-200 font-medium py-2"
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="text-foreground hover:text-primary transition-colors duration-200 font-medium py-2"
+                  >
+                    {item.label}
+                  </Link>
+                )
+              )}
               <div className="flex items-center gap-4 pt-4 border-t border-border">
                 <a
                   href="https://www.tiktok.com/@fluegge_dienstleistungen"

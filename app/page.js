@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Layers, Home, Wrench, Mail } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
+import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ServiceCard from '@/components/ServiceCard';
@@ -63,9 +64,9 @@ export default function HomePage() {
             <p className="text-xl md:text-2xl text-primary-foreground/90 mb-12 max-w-3xl mx-auto leading-relaxed">
               Vinyl, Parkett &amp; Renovierung – aus Schuttertal für die Region.
             </p>
-            <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="btn-primary inline-block">
+            <Link href="/kontakt" className="btn-primary inline-block">
               Jetzt Kontakt aufnehmen
-            </a>
+            </Link>
           </motion.div>
         </div>
       </section>
@@ -148,9 +149,9 @@ export default function HomePage() {
                 zugeschnitten ist. Kontaktieren Sie uns für eine kostenlose Beratung und ein unverbindliches
                 Angebot.
               </p>
-              <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="btn-secondary inline-block">
+              <Link href="/kontakt" className="btn-secondary inline-block">
                 Angebot anfordern
-              </a>
+              </Link>
             </motion.div>
           </div>
         </div>
@@ -198,15 +199,13 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <a
-                href={WHATSAPP_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/kontakt"
                 className="inline-flex items-center gap-3 bg-primary-foreground text-primary px-10 py-5 rounded-xl font-bold text-lg transition-all duration-300 hover:brightness-95 active:scale-[0.98] shadow-xl"
               >
                 <FaWhatsapp className="w-6 h-6" />
-                Jetzt via WhatsApp kontaktieren
-              </a>
+                Jetzt Kontakt aufnehmen
+              </Link>
             </motion.div>
           </div>
         </div>
