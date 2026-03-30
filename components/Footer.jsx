@@ -1,23 +1,22 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { FaTiktok, FaInstagram } from 'react-icons/fa';
 
 const navLinks = [
-  { label: 'Unsere Dienstleistungen', href: '#services' },
-  { label: 'Über uns', href: '#about' },
-  { label: 'Preise', href: '#pricing' },
-  { label: 'Kontakt aufnehmen', href: '#appointment' },
+  { label: 'Unsere Dienstleistungen', href: '#services', scroll: true },
+  { label: 'Über uns', href: '#about', scroll: true },
+  { label: 'Preise', href: '#pricing', scroll: true },
+  { label: 'Kontakt aufnehmen', href: '/kontakt', scroll: false },
 ];
 
 export default function Footer() {
-  const handleNavClick = (e, href) => {
-    if (href.startsWith('#')) {
-      e.preventDefault();
-      const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
+  const handleScrollClick = (e, href) => {
+    e.preventDefault();
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -26,27 +25,38 @@ export default function Footer() {
       <div className="container-custom py-16">
         {/* Logo */}
         <div className="flex justify-center mb-12">
-          <Image
-            src="/logo.png"
-            alt="Flügge Bodenbeläge"
-            width={96}
-            height={96}
-            className="rounded-full"
-          />
+          <div className="relative w-28 h-28 rounded-full overflow-hidden border-4 border-primary-foreground/30 shadow-lg bg-white">
+            <Image
+              src="/logo.png"
+              alt="Flügge Bodenbeläge"
+              fill
+              className="object-contain p-2"
+            />
+          </div>
         </div>
 
         {/* Navigation Links */}
         <nav className="flex flex-wrap justify-center gap-6 md:gap-8 mb-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              onClick={(e) => handleNavClick(e, link.href)}
-              className="hover:opacity-80 transition-opacity duration-200 font-medium"
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) =>
+            link.scroll ? (
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={(e) => handleScrollClick(e, link.href)}
+                className="hover:opacity-80 transition-opacity duration-200 font-medium"
+              >
+                {link.label}
+              </a>
+            ) : (
+              <Link
+                key={link.label}
+                href={link.href}
+                className="hover:opacity-80 transition-opacity duration-200 font-medium"
+              >
+                {link.label}
+              </Link>
+            )
+          )}
         </nav>
 
         {/* Social Icons */}
