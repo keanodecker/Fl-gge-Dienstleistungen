@@ -7,23 +7,14 @@ import { Menu, X } from 'lucide-react';
 import { FaTiktok, FaInstagram } from 'react-icons/fa';
 
 const navItems = [
-  { label: 'Unsere Dienstleistungen', href: '#services', scroll: true },
-  { label: 'Über uns', href: '#about', scroll: true },
-  { label: 'Preise', href: '#pricing', scroll: true },
-  { label: 'Kontakt aufnehmen', href: '/kontakt', scroll: false },
+  { label: 'Unsere Dienstleistungen', href: '/#services' },
+  { label: 'Über uns', href: '/#about' },
+  { label: 'Preise', href: '/#pricing' },
+  { label: 'Kontakt aufnehmen', href: '/kontakt' },
 ];
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const handleScrollClick = (e, href) => {
-    e.preventDefault();
-    setMobileMenuOpen(false);
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border shadow-sm">
@@ -41,26 +32,15 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
-            {navItems.map((item) =>
-              item.scroll ? (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  onClick={(e) => handleScrollClick(e, item.href)}
-                  className="text-foreground hover:text-primary transition-colors duration-200 font-medium"
-                >
-                  {item.label}
-                </a>
-              ) : (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  className="text-foreground hover:text-primary transition-colors duration-200 font-medium"
-                >
-                  {item.label}
-                </Link>
-              )
-            )}
+            {navItems.map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="text-foreground hover:text-primary transition-colors duration-200 font-medium"
+              >
+                {item.label}
+              </Link>
+            ))}
           </nav>
 
           {/* Social Icons - Desktop */}
@@ -99,27 +79,16 @@ export default function Header() {
         {mobileMenuOpen && (
           <div className="lg:hidden py-6 border-t border-border">
             <nav className="flex flex-col gap-4">
-              {navItems.map((item) =>
-                item.scroll ? (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    onClick={(e) => handleScrollClick(e, item.href)}
-                    className="text-foreground hover:text-primary transition-colors duration-200 font-medium py-2"
-                  >
-                    {item.label}
-                  </a>
-                ) : (
-                  <Link
-                    key={item.label}
-                    href={item.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="text-foreground hover:text-primary transition-colors duration-200 font-medium py-2"
-                  >
-                    {item.label}
-                  </Link>
-                )
-              )}
+              {navItems.map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-foreground hover:text-primary transition-colors duration-200 font-medium py-2"
+                >
+                  {item.label}
+                </Link>
+              ))}
               <div className="flex items-center gap-4 pt-4 border-t border-border">
                 <a
                   href="https://www.tiktok.com/@fluegge_dienstleistungen"
