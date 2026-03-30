@@ -1,0 +1,91 @@
+'use client';
+
+import { FaTiktok, FaInstagram } from 'react-icons/fa';
+
+const navLinks = [
+  { label: 'Unsere Dienstleistungen', href: '#services' },
+  { label: 'Über uns', href: '#about' },
+  { label: 'Preise', href: '#pricing' },
+  { label: 'Termin vereinbaren', href: '#appointment' },
+];
+
+export default function Footer() {
+  const handleNavClick = (e, href) => {
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
+  return (
+    <footer className="bg-primary text-primary-foreground">
+      <div className="container-custom py-16">
+        {/* Logo */}
+        <div className="flex justify-center mb-12">
+          <div className="w-24 h-24 rounded-full bg-primary-foreground flex items-center justify-center">
+            <div className="text-center">
+              <span className="block text-primary font-bold text-sm leading-tight">FLÜGGE</span>
+              <span className="block text-primary font-bold text-xs leading-tight">DIENST-</span>
+              <span className="block text-primary font-bold text-xs leading-tight">LEISTUNGEN</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Navigation Links */}
+        <nav className="flex flex-wrap justify-center gap-6 md:gap-8 mb-8">
+          {navLinks.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              onClick={(e) => handleNavClick(e, link.href)}
+              className="hover:opacity-80 transition-opacity duration-200 font-medium"
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+
+        {/* Social Icons */}
+        <div className="flex justify-center gap-6 mb-8">
+          <a
+            href="https://www.tiktok.com/@fluegge_dienstleistungen"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:opacity-80 transition-opacity duration-200"
+            aria-label="TikTok"
+          >
+            <FaTiktok className="w-6 h-6" />
+          </a>
+          <a
+            href="https://www.instagram.com/fluegge_bodenbelaege/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:opacity-80 transition-opacity duration-200"
+            aria-label="Instagram"
+          >
+            <FaInstagram className="w-6 h-6" />
+          </a>
+        </div>
+
+        {/* Legal Links */}
+        <div className="flex flex-wrap justify-center gap-6 mb-8 text-sm">
+          <a href="#impressum" className="hover:opacity-80 transition-opacity duration-200">
+            Impressum
+          </a>
+          <span>•</span>
+          <a href="#datenschutz" className="hover:opacity-80 transition-opacity duration-200">
+            Datenschutz
+          </a>
+        </div>
+
+        {/* Copyright */}
+        <p className="text-center text-sm opacity-80">
+          © {new Date().getFullYear()} Flügge Dienstleistungen. Alle Rechte vorbehalten.
+        </p>
+      </div>
+    </footer>
+  );
+}
