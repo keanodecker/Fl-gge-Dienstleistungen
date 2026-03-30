@@ -1,10 +1,16 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Layers, Home, Wrench, Phone, Mail } from 'lucide-react';
+import { Layers, Home, Wrench, Mail } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ServiceCard from '@/components/ServiceCard';
+
+const WHATSAPP_LINK = 'https://wa.me/4917641649481';
+const PHONE_NUMBER = '0176 41649481';
+const PHONE_HREF = 'tel:+4917641649481';
+const EMAIL = 'info@fluegge-dienstleistungen.de';
 
 const services = [
   {
@@ -57,8 +63,8 @@ export default function HomePage() {
             <p className="text-xl md:text-2xl text-primary-foreground/90 mb-12 max-w-3xl mx-auto leading-relaxed">
               Vinyl, Parkett &amp; Renovierung – aus Schuttertal für die Region.
             </p>
-            <a href="tel:+491234567890" className="btn-primary inline-block">
-              Jetzt Termin vereinbaren
+            <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="btn-primary inline-block">
+              Jetzt Kontakt aufnehmen
             </a>
           </motion.div>
         </div>
@@ -142,7 +148,7 @@ export default function HomePage() {
                 zugeschnitten ist. Kontaktieren Sie uns für eine kostenlose Beratung und ein unverbindliches
                 Angebot.
               </p>
-              <a href="tel:+491234567890" className="btn-secondary inline-block">
+              <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="btn-secondary inline-block">
                 Angebot anfordern
               </a>
             </motion.div>
@@ -150,7 +156,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Appointment Section */}
+      {/* Contact Section */}
       <section id="appointment" className="bg-primary text-primary-foreground">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center">
@@ -160,39 +166,46 @@ export default function HomePage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="mb-6">Termin vereinbaren</h2>
+              <h2 className="mb-6">Kontakt aufnehmen</h2>
               <p className="text-xl mb-12 opacity-90 leading-relaxed">
-                Bereit für Ihren neuen Traumboden? Rufen Sie uns an oder schreiben Sie uns – wir beraten Sie
+                Bereit für Ihren neuen Traumboden? Schreiben Sie uns auf WhatsApp – wir beraten Sie
                 gerne und finden gemeinsam die perfekte Lösung für Ihr Zuhause.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
+                {/* WhatsApp – primär */}
                 <div className="flex items-center gap-3">
-                  <Phone className="w-6 h-6" />
+                  <FaWhatsapp className="w-6 h-6" />
                   <a
-                    href="tel:+491234567890"
+                    href={WHATSAPP_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-xl font-semibold hover:opacity-80 transition-opacity"
                   >
-                    +49 123 456 7890
+                    {PHONE_NUMBER}
                   </a>
                 </div>
                 <div className="hidden sm:block opacity-50">|</div>
+                {/* E-Mail – sekundär */}
                 <div className="flex items-center gap-3">
                   <Mail className="w-6 h-6" />
                   <a
-                    href="mailto:info@fluegge-dienstleistungen.de"
-                    className="text-xl font-semibold hover:opacity-80 transition-opacity"
+                    href={`mailto:${EMAIL}`}
+                    className="text-lg hover:opacity-80 transition-opacity opacity-80"
                   >
-                    info@fluegge-dienstleistungen.de
+                    {EMAIL}
                   </a>
                 </div>
               </div>
 
               <a
-                href="tel:+491234567890"
-                className="inline-block bg-primary-foreground text-primary px-10 py-5 rounded-xl font-bold text-lg transition-all duration-300 hover:brightness-95 active:scale-[0.98] shadow-xl"
+                href={WHATSAPP_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 bg-primary-foreground text-primary px-10 py-5 rounded-xl font-bold text-lg transition-all duration-300 hover:brightness-95 active:scale-[0.98] shadow-xl"
               >
-                Jetzt anrufen
+                <FaWhatsapp className="w-6 h-6" />
+                Jetzt via WhatsApp kontaktieren
               </a>
             </motion.div>
           </div>

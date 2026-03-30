@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
 import { FaTiktok, FaInstagram } from 'react-icons/fa';
 
@@ -8,7 +9,7 @@ const navItems = [
   { label: 'Unsere Dienstleistungen', href: '#services' },
   { label: 'Über uns', href: '#about' },
   { label: 'Preise', href: '#pricing' },
-  { label: 'Termin vereinbaren', href: 'tel:+491234567890' },
+  { label: 'Kontakt aufnehmen', href: '#appointment' },
 ];
 
 export default function Header() {
@@ -34,13 +35,13 @@ export default function Header() {
             className="flex items-center gap-3"
             onClick={(e) => { e.preventDefault(); handleNavClick('#hero'); }}
           >
-            <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center">
-              <div className="w-8 h-8 border-2 border-primary-foreground rounded-sm transform rotate-45"></div>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-primary font-bold text-lg leading-tight">FLÜGGE</span>
-              <span className="text-primary text-xs leading-tight">Bodenbeläge</span>
-            </div>
+            <Image
+              src="/logo.png"
+              alt="Flügge Bodenbeläge"
+              width={56}
+              height={56}
+              className="rounded-full"
+            />
           </a>
 
           {/* Desktop Navigation */}

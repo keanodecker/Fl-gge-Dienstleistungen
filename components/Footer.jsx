@@ -1,12 +1,13 @@
 'use client';
 
+import Image from 'next/image';
 import { FaTiktok, FaInstagram } from 'react-icons/fa';
 
 const navLinks = [
   { label: 'Unsere Dienstleistungen', href: '#services' },
   { label: 'Über uns', href: '#about' },
   { label: 'Preise', href: '#pricing' },
-  { label: 'Termin vereinbaren', href: '#appointment' },
+  { label: 'Kontakt aufnehmen', href: '#appointment' },
 ];
 
 export default function Footer() {
@@ -25,13 +26,13 @@ export default function Footer() {
       <div className="container-custom py-16">
         {/* Logo */}
         <div className="flex justify-center mb-12">
-          <div className="w-24 h-24 rounded-full bg-primary-foreground flex items-center justify-center">
-            <div className="text-center">
-              <span className="block text-primary font-bold text-sm leading-tight">FLÜGGE</span>
-              <span className="block text-primary font-bold text-xs leading-tight">DIENST-</span>
-              <span className="block text-primary font-bold text-xs leading-tight">LEISTUNGEN</span>
-            </div>
-          </div>
+          <Image
+            src="/logo.png"
+            alt="Flügge Bodenbeläge"
+            width={96}
+            height={96}
+            className="rounded-full"
+          />
         </div>
 
         {/* Navigation Links */}
