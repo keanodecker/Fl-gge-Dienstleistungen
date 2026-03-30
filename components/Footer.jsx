@@ -25,14 +25,13 @@ export default function Footer() {
       <div className="container-custom py-16">
         {/* Logo */}
         <div className="flex justify-center mb-12">
-          <div className="relative w-28 h-28 rounded-full overflow-hidden border-4 border-primary-foreground/30 shadow-lg bg-white">
-            <Image
-              src="/logo.png"
-              alt="Flügge Bodenbeläge"
-              fill
-              className="object-contain p-2"
-            />
-          </div>
+          <Image
+            src="/logo.png"
+            alt="Flügge Bodenbeläge"
+            width={112}
+            height={112}
+            className="rounded-full shadow-lg"
+          />
         </div>
 
         {/* Navigation Links */}

@@ -30,15 +30,14 @@ export default function Header() {
       <div className="container-custom">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center">
-            <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-primary/20 shadow-md bg-white">
-              <Image
-                src="/logo.png"
-                alt="Flügge Bodenbeläge"
-                fill
-                className="object-contain p-1"
-              />
-            </div>
+          <Link href="/">
+            <Image
+              src="/logo.png"
+              alt="Flügge Bodenbeläge"
+              width={72}
+              height={72}
+              className="rounded-full shadow-md"
+            />
           </Link>
 
           {/* Desktop Navigation */}
