@@ -30,7 +30,6 @@ export default function Footer() {
             alt="Flügge Bodenbeläge"
             width={112}
             height={112}
-            className="rounded-full shadow-lg"
           />
         </div>
 

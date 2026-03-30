@@ -36,7 +36,6 @@ export default function Header() {
               alt="Flügge Bodenbeläge"
               width={72}
               height={72}
-              className="rounded-full shadow-md"
             />
           </Link>
 

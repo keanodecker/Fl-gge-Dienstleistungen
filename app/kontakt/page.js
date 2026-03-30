@@ -1,7 +1,7 @@
-import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { FaWhatsapp } from 'react-icons/fa';
+import { Mail, Phone } from 'lucide-react';
 
 export const metadata = {
   title: 'Kontakt – Flügge Bodenbeläge',
@@ -11,6 +11,7 @@ export const metadata = {
 const WHATSAPP_LINK = 'https://wa.me/4917641649481';
 const PHONE_NUMBER = '0176 41649481';
 const PHONE_HREF = 'tel:+4917641649481';
+const EMAIL = 'info@fluegge-dienstleistungen.de';
 
 export default function KontaktPage() {
   return (
@@ -42,22 +43,35 @@ export default function KontaktPage() {
               href={WHATSAPP_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white px-10 py-5 rounded-full font-bold text-lg transition-all duration-300 active:scale-[0.98] shadow-lg hover:shadow-xl mb-8"
+              className="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white px-10 py-5 rounded-full font-bold text-lg transition-all duration-300 active:scale-[0.98] shadow-lg hover:shadow-xl"
             >
               <FaWhatsapp className="w-6 h-6" />
               WhatsApp öffnen
             </a>
 
-            {/* Phone fallback */}
-            <p className="text-muted-foreground text-sm">
-              Oder rufen Sie uns an:{' '}
-              <a
-                href={PHONE_HREF}
-                className="text-primary font-semibold hover:underline"
-              >
+            {/* Text under CTA */}
+            <p className="text-muted-foreground text-sm mt-4 mb-10 leading-relaxed">
+              Wir besprechen Ihre maßgeschneiderten Ziele und visualisieren ein Endergebnis.
+            </p>
+
+            {/* Divider */}
+            <div className="border-t border-border my-8" />
+
+            {/* Phone */}
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <Phone className="w-5 h-5 text-primary" />
+              <a href={PHONE_HREF} className="text-foreground font-semibold hover:text-primary transition-colors">
                 {PHONE_NUMBER}
               </a>
-            </p>
+            </div>
+
+            {/* Email */}
+            <div className="flex items-center justify-center gap-3">
+              <Mail className="w-5 h-5 text-primary" />
+              <a href={`mailto:${EMAIL}`} className="text-foreground hover:text-primary transition-colors">
+                {EMAIL}
+              </a>
+            </div>
           </div>
         </div>
       </main>
