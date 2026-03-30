@@ -5,21 +5,13 @@ import Link from 'next/link';
 import { FaTiktok, FaInstagram } from 'react-icons/fa';
 
 const navLinks = [
-  { label: 'Unsere Dienstleistungen', href: '#services', scroll: true },
-  { label: 'Über uns', href: '#about', scroll: true },
-  { label: 'Preise', href: '#pricing', scroll: true },
-  { label: 'Kontakt aufnehmen', href: '/kontakt', scroll: false },
+  { label: 'Unsere Dienstleistungen', href: '/#services' },
+  { label: 'Über uns', href: '/#about' },
+  { label: 'Preise', href: '/#pricing' },
+  { label: 'Kontakt aufnehmen', href: '/kontakt' },
 ];
 
 export default function Footer() {
-  const handleScrollClick = (e, href) => {
-    e.preventDefault();
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <footer className="bg-primary text-primary-foreground">
       <div className="container-custom py-16">
@@ -35,26 +27,15 @@ export default function Footer() {
 
         {/* Navigation Links */}
         <nav className="flex flex-wrap justify-center gap-6 md:gap-8 mb-8">
-          {navLinks.map((link) =>
-            link.scroll ? (
-              <a
-                key={link.label}
-                href={link.href}
-                onClick={(e) => handleScrollClick(e, link.href)}
-                className="hover:opacity-80 transition-opacity duration-200 font-medium"
-              >
-                {link.label}
-              </a>
-            ) : (
-              <Link
-                key={link.label}
-                href={link.href}
-                className="hover:opacity-80 transition-opacity duration-200 font-medium"
-              >
-                {link.label}
-              </Link>
-            )
-          )}
+          {navLinks.map((link) => (
+            <Link
+              key={link.label}
+              href={link.href}
+              className="hover:opacity-80 transition-opacity duration-200 font-medium"
+            >
+              {link.label}
+            </Link>
+          ))}
         </nav>
 
         {/* Social Icons */}
